@@ -1,0 +1,44 @@
+%run /mnt/data/add_libraries_py
+from ai_song_maker import song_maker
+
+abc_notation_meta = """
+M:4/4
+L:1/4
+Q:1/4=120
+K:C
+"""
+
+abc_notation_intro = """
+V:1 clef=treble name="Melody"
+|: C4 G4 | A4 F4 | C4 G4 | A4 F4 :|
+V:2 clef=bass name="Bass"
+|: C,2 C,2 | G,2 G,2 | A,2 A,2 | F,2 F,2 :|
+V:3 clef=treble name="Piano"
+|: [C' E' G']4 [G' B' D']4 | [A' C' E']4 [F' A' C']4 | [C' E' G']4 [G' B' D']4 | [A' C' E']4 [F' A' C']4 :|
+"""
+
+abc_notation_verse = """
+V:1 clef=treble name="Melody"
+|: C4 G4 | A4 F4 | C4 G4 | A4 F4 :|
+V:2 clef=bass name="Bass"
+|: C,2 C,2 | G,2 G,2 | A,2 A,2 | F,2 F,2 :|
+V:3 clef=treble name="Piano"
+|: [C' E' G']4 [G' B' D']4 | [A' C' E']4 [F' A' C']4 | [C' E' G']4 [G' B' D']4 | [A' C' E']4 [F' A' C']4 :|
+"""
+
+abc_notation_chorus = """
+V:1 clef=treble name="Melody"
+|: F4 G4 | A4 F4 | F4 G4 | A4 F4 :|
+V:2 clef=bass name="Bass"
+|: F,2 F,2 | G,2 G,2 | A,2 A,2 | F,2 F,2 :|
+V:3 clef=treble name="Piano"
+|: [F' A' C']4 [G' B' D']4 | [A' C' E']4 [F' A' C']4 | [F' A' C']4 [G' B' D']4 | [A' C' E']4 [F' A' C']4 :|
+"""
+
+ordered_part_instrument = {'Melody': 'Guitar', 'Bass': 'Bass', 'Piano': 'Piano'}
+
+abc_notation = abc_notation_meta + abc_notation_intro + abc_notation_verse + abc_notation_chorus
+musicxml_path = '/mnt/data/pop_song_musicxml.xml'
+midi_path = '/mnt/data/pop_song_midi.mid'
+
+parts_data, score_data = song_maker.process_abc(abc_notation, ordered_part_instrument, musicxml_path, midi_path)
